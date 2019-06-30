@@ -1,0 +1,230 @@
+----scrape_asx_companies.py----
+
+General function
+	To call the functions (get_asx_companies,get_statistics, and get_latest_prices) in the correct order and automatically.
+	
+How to use:
+	Type 'python scrape_asx_companies.py' in the command line
+	Or you can call the scrape_asx_companies() function from another program.
+	
+Specifics:
+	All print functions are only there to show the start (only for get_asx_companies() since the others can use the finish time from the previous function) and finish
+	times of the functions. 
+		The only purpose of this is to show how long they have run for.
+	
+	get_statistics() is the only function that requires a parameter, which is the current date.
+
+-------------------------------
+
+----companies.py----
+
+General function
+	Downloads the list of companies from the asx website and then uses another list from asxhistorical to delete companies that are "useless".
+	The reason that the asxhistorical list isn't used instead of the asx website list is because the latter includes the company's sector.
+	
+Output
+	Two files are created/updated - These are Trading\database\companies\asx.csv and Trading\database\companies\temp.zip
+
+How to use:
+	Run the file using the command line or call the get_asx_companies() function alone.
+	You could call the other two functions by themselves but that isn't the intended purpose
+	
+	
+download_useful_companies()
+	Summary
+		Retrieves the most recent downloadable zip file to get an updated list of useful companies.
+		Returns pandas dataframe with the useful companies' asx codes
+	
+	The headers variable is required because the asxhistorical website was blocking my requests without it. This variable is used as the headers parameter in the requests.get() function
+	BeautifulSoup is used to handle the html
+	A for loop is used to iterate through all the hyperlinks (a) to find the most recent link to the zip file containing the company asx codes (and prices)
+		The loop stops when the hyperlink found matches the format expected and defined by the constant 'DOWN_URL_FORMAT' (the first one found will be the most recent one)
+	Since the zip file is saved under the same name every time this function is run, the zip file is never deleted from the companies folder in the database
+	
+
+download_all_companies()
+	Summary
+		Downloads a complete list of all companies in asx from their website. 
+		Saves the list as csv (it downloads as one, but the code does specify it as one in the file name)
+		returns a dataframe of the saved csv file
+	
+	Two if statements are just there to make sure that the desired save location exists and isn't already taken
+	Second if statement deletes any file with the same name in the specified directory but this might not be necessary as it would probably override it anyway when saving
+	urlretrieve() just gets the file from the url and saves it to the location specified by the second parameter
+	
+
+get_asx_companies()
+	Summary
+		Calls the above two functions and uses the returned dataframes to remove companies that don't exist in the useful companies list from the all companies list
+		
+	The variable 'companies_to_drop' contains (after the for loop) a list of rows that need to be dropped from all_companies. 
+		This is for two reasons. The first being that dropping a row one at a time might be time consuming
+		and because I think dropping a row mid for loop may mis-align the i variable with the actual row that the loop is up to.
+			However this completely depends on how for loops and iterrows() work 
+		
+--------------------
+
+----statistics.py----
+
+Notes
+	The function in this file is extremely time consuming. 
+	This is either due to the retrieving of html or the two separate loops (see Yahoo.py) used to retrieve two different values from the same page.
+	It may be worth retrieving all data in a single loop
+
+General function
+	To retrieve the required statistics on all companies (as defined by the file created by companies.py) from au.finance.yahoo.com
+	The csv document created by this file contains all information (besides historical prices) required for a company
+	
+Output
+	A single output file can be found at Trading\database\daily\asx.csv
+
+How to use
+	Run the file from the command line or call the get_statistics() function alone
+	
+get_statistics()
+	Summary
+		Create a dateframe and fill it with statistics for the each company
+		
+	Setup
+		The columns variable contains the headings used for the pandas dataframe. This will need to be updated if more stats are required
+		A YahooStats (as defined in Yahoo.py) instance is made
+		The list of companies are read into a dataframe (companies) 
+		A dataframe is created (statistics_df) that has all but the stats columns already filled in
+		
+	The remaining code is simply a for loop that uses YahooStats' methods (for more information see the Yahoo.py documentation) to retrieve the information from the yahoo website and 
+	then saves the data to a csv file
+	
+
+---------------------
+
+----prices.py----
+
+General Function
+	Retieve prices from au.finance.yahoo.com for each company and append it to any data already stored in the database for these companies
+	
+Output
+	Two sets of ouputs are created in the folders Trading\database\historical\asx\last_updated\ and Trading\database\historical\asx\prices\
+	Within these folders there is a single file per company
+	
+How to use
+	Run file from command line 
+	Or run get_latest_prices() 
+	
+get_latest_prices()
+	Notes
+		The variable 'last_updated' is set to 2012 for no real good reason. A better method would be to use a date some years prior to the current date (eg 5)
+	
+	Summary
+		Iterate through each company and retrieve the prices since the last time this was done
+	
+	Setup 
+		A YahooPrices (as defined in Yahoo.py) instance is made
+		The list of companies are read into a dataframe (companies) 
+		A dataframe is created (statistics_df) that has all but the stats columns already filled in
+		todays date is saved 
+		The value in last_updated is used if this company has no entry in the database
+		
+	The for loop goes through each company one at a time and checks Trading\database\historical\asx\last_updated\ to see when if at all the current company had been updated
+	it then finds the days since the company was last updated and uses the YahooPrices methods to retrieve a dataframe with the prices
+	append_data() is then called
+
+append_data()
+	Summary
+		Update or create a file with the historical prices that are specified by the dataframe parameter given by get_latest_prices()
+	
+	Just checks if a file for the current company exists
+		if so it appends to that file
+		otherwise it creates a new file
+	It then saves the file and updates a file in Trading\database\historical\asx\last_updated\ with the current date
+	
+	
+
+-----------------
+
+----Yahoo.py----
+
+General
+	Contains two classes that serve two different purposes but both use the Yahoo website	
+
+YahooStats
+	Summary
+		Class of methods and constants for easily scraping statistics from Yahoo finance
+		
+	set_stock()
+		Summary
+			Sets the company of interest by passing a company's asx code
+		
+		Also retrieves the page (more specifically the table on the page) of statistics for that company and saves it in the instance's variable, 'table' 
+		For loop is used to find a specific table that contains the heading defined by 'STATISTICS_TABLE_HEADING'
+		
+	get_pe()
+		Summary
+			Returns the value of the P/E ratio for the company
+		
+		Iterates through all 'tr's in the table (just the type of element that defines the row) until it finds one that has a row 'title' equal to PE_ROW_NAME
+		Regex is used to find numbers within the tr element that match the number format \d+\.?\d+.? (aka one or more digits followed by a . 
+			followed by one or more digits and then followed by one or zero any-character. eg 21.34M)
+		This findall() function returns everything that matches the regex. So the method returns N/A if more than one is found since I don't know an easy way to determine the right one
+		
+	get_market_cap()
+		Summary
+			Returns the value of the market cap for the company
+		
+		Does the same thing as get_pe() but has to deal with 'unit prefixes' and calls expand_num() to remove them.
+		It also has to deal with a superscript number in the row title. For some reason this gets picked up when fetching the value for the market cap
+			The line market_cap = market_cap[0][1:] removes it though
+		
+	expand_num()
+		Summary
+			Removes prefixes and returns the whole number
+		
+		Converting from a string to a float was causing some rounding issues so I used the round() function to fix this (eg I was getting 32549999 for 32.55M)
+		Checking for capital letters is probably unecessary because I've only ever seen lower case prefixes
+		
+YahooPrices
+	Note
+		Most of this code isn't mine but I have changed it quite a bit
+		Original code was taken from https://stackoverflow.com/questions/44225771/scraping-historical-data-from-yahoo-finance-with-python
+
+	Summary
+		Class of methods and constants for easily downloading historical prices from Yahoo finance
+	
+	__init__()
+		Summary
+			Creates an instance with an identifying 'crumb' that allows you to download files from yahoo finance 
+				You get an access denied (or something like that) without starting a session and using a crumb
+		
+		Creates a session class for the instance so that the crumb remains active throughout all future requests
+		Calls get_crumb() to save the crumb as a string 
+	
+	get_crumb()
+		Note
+			I copied this code and didn't really change anything and don't completely know what the response looks like for session.get()
+		Summary
+				Connect to Yahoo finance to retrieve a crumb and save it for later use
+		
+		Uses the Session.get() function to connect to the yahoo finance page and setup a crumb
+			This uses COL.AX as the 'initialising_symbol' just because a symbol is needed and coles shouldn't go out of business anytime soon
+		response.raise_for_status() is just an error handler that I think will stop the whole program if triggered (so idk if I want this)
+		regex is used to find the crumb from within the response text 
+		
+	
+	get_quote()
+		Summary
+			Takes in the company's code and the amount of days back from the current date that we want data on
+			Returns a dataframe with all the prices or an empty dataframe if it couldn't get the prices
+			
+		timedelta(), utcnow(), and timestamp() are used to get the two periods used for the url
+			timedelta() (think delta as in difference in maths) seems to create a date formatted version of the days_back (eg 5 = '5 days, 00:00:00')
+			utcnow() returns the date in some universal time
+			timestamp() returns an integer that represents a date - the same as yahoo uses
+		The while loop is used in case for some reason we don't get a response. 
+			if this happens, a new session is created and the a new crumb is found
+		
+		
+
+----------------
+
+
+
+
