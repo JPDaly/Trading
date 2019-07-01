@@ -15,17 +15,17 @@ def rank():
 	for file in files:
 		df = pd.read_csv(VOTES_SECTOR.format(file))
 		df[NUMBER_COLUMNS] = df[NUMBER_COLUMNS].apply(lambda x: x**3)
-		df['rank'] = df.sum(axis=1, skipna=True)
 		df['date'] = datetime.datetime.now().strftime("%Y-%M-%d")
+		df['rank'] = df.sum(axis=1, skipna=True)
 		df.sort_values('rank', axis=0, ascending=False, inplace=True, kind='quicksort', na_position='last')
-		df.to_csv(RANK_DIR.format(file), mode='w', columns=['asx code', 'rank', 'date'], index=False)
+		df.to_csv(RANK_DIR.format(file), mode='w', columns=['asx code', 'Market cap (intra-day)', 'date', 'rank'], index=False)
 
 
 if __name__ == "__main__":
 	rank()
 
 
-# This is obviously a very basic script but it could be more complex if machine learning was involved or if you want to
+# This is obviously a very basic script but it could be more complex if machine learning was involved or if you wanted to
 	# ignore certain scenarios. Eg you can't have a good H&S and flag (idk)
 	# You also could weight the stat and graph votes differently
 # For those reasons this gets a different folder and file
