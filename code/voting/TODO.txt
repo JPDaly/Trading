@@ -1,3 +1,3 @@
-- Finsish pattern resemblance functions in price_patterns.py
+- Finish pattern resemblance functions in price_patterns.py
 - Merge the functions from price_patterns.py and price_features.py into a class that fetches all the features of the prices in one go so that you don't have to iterate over them multiple times.
 - Work out a way to get the reverse of some patterns automatically and make it vote -1 to 1 instead of 0 to 1. Where -1 is the version of the pattern that indicates a sell. For example: Head and shoulders, double top/bottom. AKA make it efficient.
