@@ -22,9 +22,7 @@ def find_patterns(companies):
 		patterns_df.loc[i,COLUMNS[1]] = triangle(MIN_TRIANGLE_TIME,prices_df['Close'].values)
 		patterns_df.loc[i,COLUMNS[2]] = flag(MIN_FLAG_TIME,prices_df['Close'].values)
 		print(head_and_shoulders(MIN_TRIANGLE_TIME,prices_df['Close'].values))
-	
 		
-	
 	return patterns_df
 
 
