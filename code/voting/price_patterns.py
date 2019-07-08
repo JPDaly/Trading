@@ -125,16 +125,29 @@ def double_top(min_time, prices):
 	if min_time > MAX_DOUBLE_TOP_TIME and min_time >= n_prices:
 		return resemblance
 
-	max_prices,min_price,mean = double_top(prices[-min_time:])
+	max_prices,min_price,mean = double_top_features(prices[-min_time:])
 
-	if min_price > max_num(max_prices[0][0],max_prices[1][0]) or min_price < min_num(max_prices[0][0],max_prices[1][0]):
+	if min_price[0] > max_num(max_prices[0][0],max_prices[1][0]) or min_price[0] < min_num(max_prices[0][0],max_prices[1][0]):
 		return double_top(min_time+1,prices)
 
-	
+	resemblance += (1-(abs(max_prices[0][1] - max_prices[1][1])/max_num(max_prices[0][1],max_prices[1][1])))
+
+	time_distances = (abs(max_prices[0][0] - min_price[0]), abs(max_prices[1][0] - min_price[0]))
+
+	resemblance += (1-((time_distances[0] - time_distances[1])/max_num(time_distances[0],time_distances[1])))
+
+	max_price_ave = (max_prices[0][1] + max_prices[1][1])/2
+	distances_from_mean = (abs(max_price_ave - mean), abs(min_price[1] - mean))
+
+	resemblance += (1-(abs(distances_from_mean[0]-distances_from_mean[1])/max_num(distances_from_mean[0], distances_from_mean[1])))
+
+	return max_num(resemblance/3,double_top(min_time+1,prices))
+
 
 
 
 def triple_top():
+	# Possibly too similar to the head and shoulders 
 	pass
 
 def max_num(a,b):

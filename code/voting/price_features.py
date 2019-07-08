@@ -71,14 +71,14 @@ def get_head_and_shoulders_points(prices):
 	return max_prices[0],min_prices[0],max_prices[1],min_prices[1],max_prices[2],total/len(prices)
 
 
-def double_top(prices):
+def double_top_features(prices):
 	min_price = (0,np.inf)
 	max_prices = [(0,0),(0,0)]
 	total = 0
 	for i,price in enumerate(prices):
 		total += price
 		point = (i,price)
-		if price < min_price:
+		if price < min_price[1]:
 			min_price = (i,price)
 		for j,max_price in enumerate(max_prices):
 			if price > max_price[1]:
@@ -86,6 +86,6 @@ def double_top(prices):
 				max_prices[j] = point
 				point = temp
 
-				
+
 	return max_prices,min_price,total/len(prices)
 
