@@ -1,7 +1,6 @@
 import pandas as pd
 
 class Patterns:
-	triangle_max_differences = []
 	means = []
 	# Not sure if this is how you initialise a 2D list but we will need them since we need 3 per price range
 	max_prices = [[]] # up to 3?
@@ -10,6 +9,10 @@ class Patterns:
 	min_tail_prices = [] # one per price range
 	max_tail_prices = [] # one per price range
 
-	def __init__(self):
+	def __init__(self, prices):
+		update_instance(prices)
+
+	def update_instance(self,prices):
+		# Iterate through the prices and get all the data that is needed (least iterations possible)
 		pass
 
