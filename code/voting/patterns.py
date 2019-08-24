@@ -17,12 +17,14 @@ class Pattern:
 
 	def __init__(self, prices):
 		self.n_prices = len(prices)
-		self.find_features(prices)
 		self.baseline = prices[-1]
 		self.prices = prices
+		self.find_features(prices)
 
 	def find_features(self,prices):
-		for max_period in range(SHORTEST_PATTERN,LONGEST_PATTERN+1):
+		for max_period in range(self.SHORTEST_PATTERN,self.LONGEST_PATTERN+1):
+			if max_period >= self.n_prices:
+				break
 			self.sum_area_below_baseline.append(0)
 			self.sum_area_above_baseline.append(0)
 			sub_prices = prices[-max_period:]
@@ -33,9 +35,9 @@ class Pattern:
 				total += price
 				diff = abs(price-self.baseline)
 				if price > self.baseline:
-					sum_area_above_baseline[-1] += diff
+					self.sum_area_above_baseline[-1] += diff
 				else:
-					sum_area_below_baseline[-1] += diff
+					self.sum_area_below_baseline[-1] += diff
 			
 			self.means.append(total/n_sub_prices)
 
@@ -52,11 +54,10 @@ class Pattern:
 
 	def res_triangle(self,max_time=MIN_TRIANGLE_TIME):
 		resemblance = 0
-		data_index = MIN_TRIANGLE_TIME - SHORTEST_PATTERN
+		data_index = max_time - self.SHORTEST_PATTERN
 
-		if max_time > LONGEST_PATTERN or max_time > self.n_prices:
+		if max_time > self.LONGEST_PATTERN or max_time >= self.n_prices:
 			return resemblance
-
 
 		if abs(self.max_prices[data_index][0][0] - self.baseline) > abs(self.max_prices[data_index][0][0] - self.baseline):
 			max_diff = self.max_prices[data_index][0]
@@ -72,23 +73,51 @@ class Pattern:
 		# Bigger the difference between the tail mean and the triangle mean the better
 		resemblance += (((abs(self.tail_means[data_index]-self.means[data_index]))**2)/3)
 		# Percentage of values within the triangle
-		resemblance += ((within_triangle(max_diff,self.prices[-max_time:]))/3)
+		resemblance += ((self.within_triangle(max_diff,self.prices[-max_time:]))/3)
 
 		# If the tail is above the mean then the triangle indicates a sell
 		if self.tail_means[data_index] > self.baseline:
 			resemblance *= -1
 
 		next_resemblance = self.res_triangle(max_time+1)
-		if resemblance > abs(next_resemblance):
+		if abs(resemblance) > abs(next_resemblance):
 			return resemblance
 		else:
 			return next_resemblance
 
 
+	def res_flag(self, max_time=SHORTEST_PATTERN):
+		resemblance = 0
+		data_index = max_time - self.SHORTEST_PATTERN
 
-	def res_flag(self):
-		# same deal as triangle
-		pass
+		if max_time > self.LONGEST_PATTERN or max_time >= self.n_prices:
+			return resemblance
+
+		min_flag_price = self.min_prices[data_index][-1][0]
+		max_flag_price = self.max_prices[data_index][0][0]
+		flag_height = max_flag_price - min_flag_price
+		tail_mean = self.tail_means[data_index]
+
+		tail_height = max_tail_price - min_tail_price
+		if max_tail_price > max_flag_price and min_tail_price > min_flag_price:
+			# bear flag
+			overlap = max_flag_price - min_tail_price 
+			if overlap <= 0:
+				resemblance += 0.5
+			else: 
+				resemblance += -1 + (flag_height/overlap)
+		elif max_tail_price < max_flag_price and min_tail_price < min_flag_price:
+			# bull flag
+			overlap = max_tail_price - min_flag_price 
+			if overlap <= 0:
+				resemblance += 0.5
+			else: 
+				resemblance += 1 - (flag_height/overlap)
+		resemblance += (1 - (flag_height/tail_height))/2
+		return max_num(resemblance,flag(min_time+1,prices))
+
+
+
 
 	def res_head_and_shoulders(self):
 		# upside down return 1 
@@ -102,14 +131,14 @@ class Pattern:
 
 
 	def within_triangle(self,max_diff,min_time):
-		gradient = max_diff[0]/(len(prices)-max_diff[1])
+		gradient = max_diff[0]/(len(self.prices)-max_diff[1])
 		y_intercept = gradient*max_diff[0] + max_diff[0]
 		count = 0
-		for i,price in enumerate(prices):
-			if abs(price-prices[-1]) < (-gradient*i + y_intercept):
+		for i,price in enumerate(self.prices):
+			if abs(price-self.prices[-1]) < (-gradient*i + y_intercept):
 				count += 1
 
-		return count/len(prices[:-1])
+		return count/len(self.prices[:-1])
 
 
 
@@ -120,4 +149,5 @@ class Pattern:
 
 if __name__ == '__main__':
 	pattern = Pattern([26,10,19,28,10,14,15,30,9,16,7,16,8,14,20,30,15,27,25,5,26,11,12,2,15,12,16,3,28,9])
-	print(pattern.means)
+	# print(pattern.means)
+	print(pattern.res_triangle())
