@@ -1,0 +1,24 @@
+asx code,Date,sector,Market cap (intra-day),Enterprise value,Trailing P/E,Forward P/E,PEG ratio (5-yr expected),Price/sales,Price/book,Enterprise value/revenue,Enterprise value/EBITDA
+ST1,2019-05-06,Communication Services,49960000.0,45600000.0,,,,3.05,3.0,2.79,28.92
+ST1,2019-05-07,Communication Services,49960000.0,45600000.0,,,,3.05,3.0,2.79,28.92
+ST1,2019-05-08,Communication Services,47180000.0,45600000.0,,,,2.88,2.83,2.79,28.92
+ST1,2019-05-09,Communication Services,50860000.0,45600000.0,,,,3.11,2.92,2.79,28.92
+ST1,2019-05-10,Communication Services,50860000.0,45600000.0,,,,3.11,2.92,2.79,28.92
+ST1,2019-05-13,Communication Services,49410000.0,44380000.0,,,,3.02,2.83,2.71,28.14
+ST1,2019-05-14,Communication Services,47950000.0,44380000.0,,,,2.93,2.75,2.71,28.14
+ST1,2019-05-15,Communication Services,47950000.0,43150000.0,,,,2.93,2.75,2.64,27.36
+ST1,2019-05-16,Communication Services,49410000.0,43150000.0,,,,3.02,2.83,2.64,27.36
+ST1,2019-05-17,Communication Services,52310000.0,43150000.0,,,,3.2,3.0,2.64,27.36
+ST1,2019-05-20,Communication Services,54260000.0,45600000.0,,,,3.32,3.0,2.79,28.92
+ST1,2019-05-21,Communication Services,55770000.0,45600000.0,,,,3.41,3.08,2.79,28.92
+ST1,2019-05-22,Communication Services,55770000.0,45600000.0,,,,3.41,3.08,2.79,28.92
+ST1,2019-05-23,Communication Services,57280000.0,45600000.0,,,,3.5,3.17,2.79,28.92
+ST1,2019-05-27,Communication Services,60290000.0,45600000.0,,,,3.68,3.33,2.79,28.92
+ST1,2019-05-28,Communication Services,60290000.0,45600000.0,,,,3.68,3.33,2.79,28.92
+ST1,2019-05-29,Communication Services,63300000.0,45600000.0,,,,3.87,3.5,2.79,28.92
+ST1,2019-05-30,Communication Services,60290000.0,45600000.0,,,,3.68,3.33,2.79,28.92
+ST1,2019-06-01,Telecommunication Services,60290000.0,45600000.0,,,,3.68,3.33,2.79,28.92
+ST1,2019-06-03,Telecommunication Services,58780000.0,45600000.0,,,,3.59,3.25,2.79,28.92
+ST1,2019-06-04,Telecommunication Services,55770000.0,49280000.0,,,,3.41,3.08,3.01,31.25
+ST1,2019-06-05,Telecommunication Services,61800000.0,49280000.0,,,,3.78,3.42,3.01,31.25
+ST1,2019-06-06,Telecommunication Services,60290000.0,49280000.0,,,,3.68,3.33,3.01,31.25

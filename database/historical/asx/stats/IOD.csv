@@ -1,0 +1,15 @@
+asx code,Date,sector,Market cap (intra-day),Enterprise value,Trailing P/E,Forward P/E,PEG ratio (5-yr expected),Price/sales,Price/book,Enterprise value/revenue,Enterprise value/EBITDA
+IOD,2019-05-13,Software & Services,17480000.0,16450000.0,,,,56.15,,52.84,-17.89
+IOD,2019-05-14,Software & Services,17480000.0,16450000.0,,,,56.15,,52.84,-17.89
+IOD,2019-05-15,Software & Services,16970000.0,16450000.0,,,,54.49,,52.84,-17.89
+IOD,2019-05-16,Software & Services,16970000.0,16450000.0,,,,54.49,,52.84,-17.89
+IOD,2019-05-17,Software & Services,16970000.0,15960000.0,,,,54.49,,51.25,-17.35
+IOD,2019-05-27,Software & Services,19540000.0,20910000.0,,,,62.75,,67.16,-22.74
+IOD,2019-05-28,Software & Services,19540000.0,20910000.0,,,,62.75,,67.16,-22.74
+IOD,2019-05-29,Software & Services,20570000.0,20910000.0,,,,66.05,,67.16,-22.74
+IOD,2019-05-30,Software & Services,20570000.0,20910000.0,,,,66.05,,67.16,-22.74
+IOD,2019-06-01,Software & Services,21080000.0,20910000.0,,,,67.71,,67.16,-22.74
+IOD,2019-06-03,Software & Services,22110000.0,19920000.0,,,,71.01,,63.98,-21.66
+IOD,2019-06-04,Software & Services,22620000.0,19920000.0,,,,72.66,,63.98,-21.66
+IOD,2019-06-05,Software & Services,22110000.0,19920000.0,,,,71.01,,63.98,-21.66
+IOD,2019-06-06,Software & Services,23650000.0,21410000.0,,,,75.96,,68.75,-23.28

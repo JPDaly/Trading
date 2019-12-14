@@ -1,0 +1,24 @@
+asx code,Date,sector,Market cap (intra-day),Enterprise value,Trailing P/E,Forward P/E,PEG ratio (5-yr expected),Price/sales,Price/book,Enterprise value/revenue,Enterprise value/EBITDA
+MNW,2019-05-06,Software & Services,24340000.0,28190000.0,,,,6.89,,7.97,-6.49
+MNW,2019-05-07,Software & Services,23560000.0,28190000.0,,,,6.67,,7.97,-6.49
+MNW,2019-05-08,Software & Services,25130000.0,28970000.0,,,,7.11,,8.2,-6.67
+MNW,2019-05-09,Software & Services,25130000.0,28970000.0,,,,7.11,,8.2,-6.67
+MNW,2019-05-10,Software & Services,22770000.0,30540000.0,,,,6.44,,8.64,-7.03
+MNW,2019-05-13,Software & Services,23560000.0,28190000.0,,,,6.67,,7.97,-6.49
+MNW,2019-05-14,Software & Services,21990000.0,28970000.0,,,,6.22,,8.2,-6.67
+MNW,2019-05-15,Software & Services,21990000.0,28970000.0,,,,6.22,,8.2,-6.67
+MNW,2019-05-16,Software & Services,21990000.0,28970000.0,,,,6.22,,8.2,-6.67
+MNW,2019-05-17,Software & Services,21990000.0,27400000.0,,,,6.22,,7.75,-6.31
+MNW,2019-05-20,Software & Services,20420000.0,27400000.0,,,,5.78,,7.75,-6.31
+MNW,2019-05-21,Software & Services,20420000.0,27400000.0,,,,5.78,,7.75,-6.31
+MNW,2019-05-22,Software & Services,20420000.0,25830000.0,,,,5.78,,7.31,-5.95
+MNW,2019-05-23,Software & Services,20420000.0,25830000.0,,,,5.78,,7.31,-5.95
+MNW,2019-05-27,Software & Services,21200000.0,25830000.0,,,,6.0,,7.31,-5.95
+MNW,2019-05-28,Software & Services,19630000.0,25830000.0,,,,5.55,,7.31,-5.95
+MNW,2019-05-29,Software & Services,19630000.0,25830000.0,,,,5.55,,7.31,-5.95
+MNW,2019-05-30,Software & Services,19630000.0,25830000.0,,,,5.55,,7.31,-5.95
+MNW,2019-06-01,Software & Services,19630000.0,25830000.0,,,,5.55,,7.31,-5.95
+MNW,2019-06-03,Software & Services,22770000.0,25050000.0,,,,6.44,,7.09,-5.77
+MNW,2019-06-04,Software & Services,22770000.0,25050000.0,,,,6.44,,7.09,-5.77
+MNW,2019-06-05,Software & Services,22770000.0,25050000.0,,,,6.44,,7.09,-5.77
+MNW,2019-06-06,Software & Services,22770000.0,28190000.0,,,,6.44,,7.97,-6.49

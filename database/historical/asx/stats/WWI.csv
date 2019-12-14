@@ -1,0 +1,11 @@
+asx code,Date,sector,Market cap (intra-day),Enterprise value,Trailing P/E,Forward P/E,PEG ratio (5-yr expected),Price/sales,Price/book,Enterprise value/revenue,Enterprise value/EBITDA
+WWI,2019-05-06,Materials,6350000.0,994250.0,,,,0.76,0.44,0.12,-0.31
+WWI,2019-05-07,Materials,7140000.0,994250.0,,,,0.85,0.5,0.12,-0.31
+WWI,2019-05-08,Materials,7140000.0,994250.0,,,,0.85,0.5,0.12,-0.31
+WWI,2019-05-09,Materials,7140000.0,1770000.0,,,,0.85,0.5,0.21,-0.55
+WWI,2019-05-10,Materials,7140000.0,1770000.0,,,,0.85,0.5,0.21,-0.55
+WWI,2019-05-15,Materials,6350000.0,1770000.0,,,,0.76,0.44,0.21,-0.55
+WWI,2019-06-03,Materials,6350000.0,220970.0,,,,0.76,0.44,0.03,-0.07
+WWI,2019-06-04,Materials,5550000.0,994250.0,,,,0.66,0.39,0.12,-0.31
+WWI,2019-06-05,Materials,5550000.0,994250.0,,,,0.66,0.39,0.12,-0.31
+WWI,2019-06-06,Materials,5550000.0,994250.0,,,,0.66,0.39,0.12,-0.31

@@ -1,0 +1,14 @@
+asx code,Date,sector,Market cap (intra-day),Enterprise value,Trailing P/E,Forward P/E,PEG ratio (5-yr expected),Price/sales,Price/book,Enterprise value/revenue,Enterprise value/EBITDA
+ICT,2019-05-13,Consumer Services,33120000.0,31330000.0,,,,6.23,2.74,5.9,-7.44
+ICT,2019-05-14,Consumer Services,32590000.0,32850000.0,,,,6.14,2.7,6.18,-7.8
+ICT,2019-05-15,Consumer Services,34170000.0,32850000.0,,,,6.43,2.83,6.18,-7.8
+ICT,2019-05-16,Consumer Services,32590000.0,32850000.0,,,,6.14,2.7,6.18,-7.8
+ICT,2019-05-17,Consumer Services,34170000.0,32340000.0,,,,6.43,2.83,6.09,-7.68
+ICT,2019-05-20,Consumer Services,34170000.0,33860000.0,,,,6.43,2.83,6.37,-8.04
+ICT,2019-05-21,Consumer Services,34170000.0,33860000.0,,,,6.43,2.83,6.37,-8.04
+ICT,2019-05-22,Consumer Services,35220000.0,33860000.0,,,,6.63,2.91,6.37,-8.04
+ICT,2019-05-23,Consumer Services,35220000.0,33860000.0,,,,6.63,2.91,6.37,-8.04
+ICT,2019-06-03,Consumer Services,31540000.0,32850000.0,,,,5.94,2.61,6.18,-7.8
+ICT,2019-06-04,Consumer Services,29960000.0,32850000.0,,,,5.64,2.48,6.18,-7.8
+ICT,2019-06-05,Consumer Services,29960000.0,32850000.0,,,,5.64,2.48,6.18,-7.8
+ICT,2019-06-06,Consumer Services,29960000.0,29810000.0,,,,5.64,2.48,5.61,-7.08

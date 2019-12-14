@@ -1,0 +1,5 @@
+asx code,Date,sector,Market cap (intra-day),Enterprise value,Trailing P/E,Forward P/E,PEG ratio (5-yr expected),Price/sales,Price/book,Enterprise value/revenue,Enterprise value/EBITDA,triangle,flag,reactangle,h&s,double_top,triple_top,mean
+CLB,2019-05-10,Food & Staples Retailing,micro,0.0,,,,1.0000000000000002,,1.0,0.0,1,0,1,,,,
+COL,2019-05-10,Food & Staples Retailing,large,0.40730097234131185,0.0,,,0.10915492957746481,0.9999999999999999,0.0658682634730539,0.9999999999999999,1,0,1,,,,
+MTS,2019-05-10,Food & Staples Retailing,mid,0.06225341696050443,,,,0.0,0.0,0.0,0.6516264428121721,1,0,1,,,,
+WOW,2019-05-10,Food & Staples Retailing,large,1.0,1.0,,,0.20070422535211271,0.42014742014742,0.1157684630738523,0.8871983210912906,1,0,1,,,,
