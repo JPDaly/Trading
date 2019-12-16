@@ -31,8 +31,10 @@ def get_asx_companies():
 
 
 
+#This is no longer working because you require a header when using urlretrieve which isn't defined. 
+#Go to https://stackoverflow.com/questions/9419162/download-returned-zip-file-from-url to see how to maybe do it with requests
 def download_useful_companies():
-	headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36'}
+	headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36'}
 	#The above is required otherwise the website doesn't give you access. I found this by going to the network tab in the dev tools in chrome 
 	# 	and searched (not filtered) for user-agent
 	response = requests.get(USEFUL_URL,headers=headers)
@@ -42,6 +44,7 @@ def download_useful_companies():
 
 	for a in page.find_all('a', href=True):
 		if DOWNLOAD_URL_FORMAT in a['href']:
+			print(a['href'])
 			urlretrieve(a['href'],ZIP_FILE_LOCATION)
 			break
 
