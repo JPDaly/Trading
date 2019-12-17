@@ -23,6 +23,8 @@ def get_asx_companies():
     for i,company in all_companies.iterrows():
         if company['ASX code'] not in useful[0].values:
             companies_to_drop.append(i)
+        elif company['ASX code'] == "PRN": #This is an invalid file name in Windows. Add others as you find them (more trouble than it's worth to include it)
+            companies_to_drop.append(i)
 
     all_companies.drop(all_companies.index[companies_to_drop], inplace=True)
     all_companies.to_csv(FILE_LOCATION+FILE_NAME,index=False)

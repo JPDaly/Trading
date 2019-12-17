@@ -9,11 +9,11 @@ import keyboard
 import time
 
 
-COMPANIES_LIST_LOCATION = "../../database/companies/asx.csv"
-STATISTICS_LOCATION = "../../database/daily/asx.csv"
+COMPANIES_LIST_LOCATION = r"..\..\database\companies\asx.csv"
+STATISTICS_LOCATION = r"..\..\database\daily\asx.csv"
 
-STATS_DATABASE_LOC = "../../database/historical/asx/stats/{0}.csv"
-LAST_UPDATED = "../../database/historical/asx/stats/last_updated/{0}.txt"
+STATS_DATABASE_LOC = r"..\..\database\historical\asx\stats\{0}.csv"
+LAST_UPDATED = r"..\..\database\historical\asx\stats\last_updated\{0}.txt"
 
 
 def get_statistics(date):
@@ -48,35 +48,27 @@ def get_statistics(date):
 def append_stats(date):
     df = pd.read_csv(STATISTICS_LOCATION)
     columns = df.columns
-    # there's no check for the last time this was updated. Instead it's possible to use drop_duplicates() as shown in https://jamesrledoux.com/code/drop_duplicates
+    n_companies = df.shape[0]
+    # there's no check for the last time this was updated. Instead it's possible to use drop_duplicates() as shown in https:\\jamesrledoux.com\code\drop_duplicates
     # to avoid dealing with them later on
     for i,company in df.iterrows():
-        print(str(i+1),end="\r")
-        if(i==1010):
-            print(company)
+        print(str(i+1) + "/" + str(n_companies),end="\r")
         if os.path.isfile(STATS_DATABASE_LOC.format(company['asx code'])):
-            if(i==1010):
-                print("Here1")
             temp = pd.read_csv(STATS_DATABASE_LOC.format(company['asx code']))
-            if(i==1010):
-                print("Here2")
             temp = temp.append(company,ignore_index=True)
-            if(i==1010):
-                print("Here3")
             temp.to_csv(STATS_DATABASE_LOC.format(company['asx code']),index=False)
         else:
-            if(i==1010):
-                print("Here4")
-            temp = pd.DataFrame([company.values],columns=columns)
-            if(i==1010):
-                print("Here5")
-                print(temp)
-                print(STATS_DATABASE_LOC.format(company['asx code']))
-            temp.to_csv(STATS_DATABASE_LOC.format(company['asx code']),index=False)
+            try:
+                temp = pd.DataFrame([company.values],columns=columns)
+                temp.to_csv(STATS_DATABASE_LOC.format(company['asx code']),index=False)
+                break
+            except:
+                print("Error, couldn't create file: " + STATS_DATABASE_LOC.format(company['asx code']))
+                print("Check that directory exists and that the file name isn't an invalid one for windows")
+                print("The company will be ignored")
+                continue
 
         #currently only doing this in case I want to use it in the future for something 
-        if(i==1010):
-            print("Here6")
         with open(LAST_UPDATED.format(company['asx code']),"w") as f:
             f.write(date)
 
