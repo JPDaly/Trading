@@ -65,8 +65,7 @@ def get_head_and_shoulders_points(prices):
 				max_prices[j] = point
 				point = temp
 
-	# Is this creating a 2D array like this variable is originally declared?
-	min_prices[0] = [min(prices[max_prices[0][0]:max_prices[1][0]+1]),min(prices[max_prices[1][0]:max_prices[2][0]+1])]
+	min_prices = [min(prices[max_prices[0][0]:max_prices[1][0]+1]),min(prices[max_prices[1][0]:max_prices[2][0]+1])]
 
 	return max_prices[0],min_prices[0],max_prices[1],min_prices[1],max_prices[2],total/len(prices)
 
