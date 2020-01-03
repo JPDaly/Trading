@@ -61,7 +61,7 @@ class Pattern:
 
     def res_triangle(self):
         max_resem = (0,0) # time resem
-        
+        print(self.prices)
         for max_time in range(self.MIN_TRIANGLE_TIME,self.LONGEST_PATTERN+1):
             resemblance = 0
             data_index = max_time - self.SHORTEST_PATTERN            
@@ -250,12 +250,22 @@ def get_patterns(companies):
             prices_df = pd.read_csv(PRICES_LOC.format(company))
         except:
             continue
+        print("\n" + str(company))
         pattern = Pattern(prices_df['Close'].values)
         patterns_df.loc[i,COLUMNS[0]] = company
         patterns_df.loc[i,COLUMNS[1]] = pattern.res_triangle()[1]
         patterns_df.loc[i,COLUMNS[2]] = pattern.res_flag()[1]
         patterns_df.loc[i,COLUMNS[3]] = pattern.res_head_and_shoulders()[1]
         patterns_df.loc[i,COLUMNS[4]] = pattern.res_double_top()[1]
+        if i == 1:
+            exit()
+        #print(company)
+        #print(pattern.res_triangle()[1])
+        #print(pattern.res_flag()[1])
+        #print(pattern.res_head_and_shoulders()[1])
+        #print(pattern.res_double_top()[1])
+        #print("--------")
+        
     return patterns_df
 
 
