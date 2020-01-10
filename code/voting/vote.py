@@ -30,6 +30,8 @@ def voting():
                 sector_df = sector_df.append(pd.read_csv(STATS.format(company['ASX code'])).tail(1),ignore_index=True)
             except:
                 continue
+        #Change stat values to indicate worth
+        sector_df = stat_calculations(sector_df)
         # run normalise_stats() and any other stats related functions
         sector_df = normalise_stats(sector_df,min_max)
         # run pattern recognition on the prices and append results to end of dataframe created with the stats function
@@ -38,7 +40,25 @@ def voting():
         sector_df = sector_df.merge(get_patterns(companies[companies['GICS industry group'] == sector]['ASX code'].values),on='asx code')
         # save pre_processed df to file marked sector.csv
         sector_df.to_csv(VOTES_SECTOR.format(sector),index=False)
+
+#See the notes in stats.txt in documentation for the logic behind this function    
+def stat_calculations(df):
+    df["Enterprise value"] = df["Market cap (intra-day)"] - df["Enterprise value"]
+    df["Enterprise value/EBITDA"] = 10 - df["Enterprise value/EBITDA"]
     
+    for i,value in enumerate(df["Enterprise value/EBITDA"].values):
+        if value < 0:
+            df.loc[i,"Enterprise value/EBITDA"] = value - 10
+        else:
+            df.loc[i,"Enterprise value/EBITDA"] = 10 - value
+        
+    
+    for column in df.columns.values[4:]:
+        if column == "Enterprise value" or column == "Enterprise value/EBITDA":
+            continue
+        df[column] = 1/df[column]
+    return df
+
 
 def normalise_stats(df,min_max):
     for column in df.columns.values[4:]:

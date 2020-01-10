@@ -1,0 +1,52 @@
+Enterprise value
+    EV = market cap + debt - cash
+    Example given was. Say you want to buy a 500k house and you make a deposit of 100k and take a loan of 400k
+    The equation would look like
+    EV = Equity value + Net debt
+    500k = 100k + 400k
+        
+    For example, if two companies have the same market cap then the one with the smaller EV will be the less riskier one as it has less debt.
+
+PEG ratio
+    Price/earnings to growth ratio is the p/e ratio divided by the growth
+    EPS = Earnings per share
+    PEG = Price/(EPS*EPS_growth)
+    
+    Low is good
+    Some say below one is desirable
+    
+    
+price/sales
+    p/s = market_cap/revenue(last 12 months)
+    If low the share might be undervalued (eg valued low but earning high)
+    
+price/book
+    The price per share divided by the book value per share (BVPS)
+    The BPVS is the dollar value if the company dissolved and all assets are liquidated and all debtors are paid.
+    Lower could mean undervalued
+    OR could mean something is wrong with the company (I assume people that don't know what they're doing running it)
+
+Enterprise value to revenue
+    EV/R = EV/revenue
+    Lower the better
+    
+Enterprise value / EBITDA
+    Enterprise value (EV) to the earnings before interest, tax, depreciation, and amortization (EBITDA)
+    A value below 10 is considered good
+    Could do a similar thing to EV except use 10 instead of MC
+    
+
+
+Buy signs:
+    If EV is less than market cap
+        Could get the value of MC - EV for all companies and the one with the largest value is best
+        Then normalise
+    low PEG
+        or under 1
+    Low p/s
+    low p/b
+    low EV/R
+    if EV/EBITDA is less than 10
+        
+    
+    
