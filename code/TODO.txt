@@ -1,0 +1,3 @@
+-Create a way to track the money made and lost.
+-Improve the user interface 
+-Make a plan on how to use this program
