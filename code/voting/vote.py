@@ -56,6 +56,11 @@ def stat_calculations(df):
     for column in df.columns.values[4:]:
         if column == "Enterprise value" or column == "Enterprise value/EBITDA":
             continue
+        max = df[column].max()
+        for i,value in enumerate(df[column]):
+            if value <= 0:
+                df.loc[i,column] = value*-1 + max
+        df[column].fillna(df[column].max()+1)
         df[column] = 1/df[column]
     return df
 

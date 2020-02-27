@@ -13,6 +13,7 @@ MAX_MENU_OPTIONS = 3
 class GUI:
 
 	def __init__(self):
+        
 		self.owned_df = pd.read_csv(OWNED_STOCKS_DIR)
 		self.functions = [self.print_owned, self.update, self.recommendations]
 		self.companies = pd.read_csv(COMPANIES_LIST_DIR)

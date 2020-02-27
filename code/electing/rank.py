@@ -18,8 +18,9 @@ def rank():
         df['date'] = datetime.datetime.now().strftime("%Y-%M-%d")
         df['stat rank'] = df[NUMBER_COLUMNS[:8]].sum(axis=1, skipna=True)
         df['total rank'] = df.sum(axis=1, skipna=True)
-        df.sort_values('total rank', axis=0, ascending=False, inplace=True, kind='quicksort', na_position='last')
+        df.sort_values('stat rank', axis=0, ascending=False, inplace=True, kind='quicksort', na_position='last')
         df.to_csv(RANK_DIR.format(file), mode='w', columns=['asx code', 'Market cap (intra-day)', 'date', 'stat rank', 'total rank'], index=False)
+    print("Finished ranking companies.\nSee files in \\Trading\\database\\votes for the outputs")
 
 
 if __name__ == "__main__":

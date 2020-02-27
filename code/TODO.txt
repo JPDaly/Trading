@@ -1,3 +1,5 @@
+-Make sure that negative values for all stats are handled correctly. Negative is generally bad so make them *-1 + max(stat value). That way they are treated worse
+    than any other company
 -Create a way to track the money made and lost.
 -Improve the user interface 
 -Make a plan on how to use this program

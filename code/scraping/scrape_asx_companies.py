@@ -1,5 +1,5 @@
 import datetime
-from statistics import get_statistics, append_stats
+from stats import get_statistics, append_stats
 from companies import *
 from prices import get_latest_prices
 
